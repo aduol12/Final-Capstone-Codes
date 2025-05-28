@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Smart Environment Monitoring</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Smart Environment Monitoring</h1>
+      <div class="header-actions">
+        <button id="mark-all-read" class="action-button">Mark All as Read</button>
+        <button id="theme-toggle" class="theme-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </header>
+    
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="control.html">Control</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li class="active"><a href="notifications.html">Notifications</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    
+    <main>
+      <h2 class="page-title">Notifications</h2>
+      
+      <div class="notifications-filters">
+        <div class="filter-group">
+          <label for="notification-type">Filter by Type:</label>
+          <select id="notification-type" class="filter-select">
+            <option value="all">All Notifications</option>
+            <option value="alert">Alerts</option>
+            <option value="warning">Warnings</option>
+            <option value="info">Information</option>
+            <option value="system">System</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="notification-status">Filter by Status:</label>
+          <select id="notification-status" class="filter-select">
+            <option value="all">All</option>
+            <option value="unread">Unread</option>
+            <option value="read">Read</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="notifications-list">
+        <div class="notification-item unread danger">
+          <div class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="notification-content">
+            <div class="notification-header">
+              <h3>Critical Temperature Alert</h3>
+              <span class="notification-time">10 minutes ago</span>
+            </div>
+            <p class="notification-message">Temperature has reached 32.5°C, which is above the critical threshold. Cooling system has been automatically activated.</p>
+            <div class="notification-actions">
+              <button class="notification-action">Mark as Read</button>
+              <button class="notification-action">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="notification-item unread warning">
+          <div class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="notification-content">
+            <div class="notification-header">
+              <h3>Humidity Warning</h3>
+              <span class="notification-time">45 minutes ago</span>
+            </div>
+            <p class="notification-message">Humidity level has reached 75.2%, which is above the recommended range. Consider activating dehumidification.</p>
+            <div class="notification-actions">
+              <button class="notification-action">Mark as Read</button>
+              <button class="notification-action">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="notification-item read info">
+          <div class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          </div>
+          <div class="notification-content">
+            <div class="notification-header">
+              <h3>System Maintenance Complete</h3>
+              <span class="notification-time">2 hours ago</span>
+            </div>
+            <p class="notification-message">Scheduled system maintenance has been completed successfully. All systems are functioning normally.</p>
+            <div class="notification-actions">
+              <button class="notification-action">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="notification-item read system">
+          <div class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          </div>
+          <div class="notification-content">
+            <div class="notification-header">
+              <h3>Firmware Update Available</h3>
+              <span class="notification-time">1 day ago</span>
+            </div>
+            <p class="notification-message">A new firmware update (v2.1.4) is available for your system. This update includes performance improvements and bug fixes.</p>
+            <div class="notification-actions">
+              <button class="notification-action primary">Install Update</button>
+              <button class="notification-action">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="notification-item read warning">
+          <div class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="notification-content">
+            <div class="notification-header">
+              <h3>Gas Level Warning</h3>
+              <span class="notification-time">2 days ago</span>
+            </div>
+            <p class="notification-message">Gas level reached 750 ppm, which is approaching the upper safe limit. Ventilation system was automatically activated.</p>
+            <div class="notification-actions">
+              <button class="notification-action">Dismiss</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="notifications-pagination">
+        <button id="prev-notifications" class="pagination-button" disabled>Previous</button>
+        <span class="pagination-info">Page <span id="current-notifications-page">1</span> of <span id="total-notifications-pages">3</span></span>
+        <button id="next-notifications" class="pagination-button">Next</button>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2023 Smart Environment Monitoring</p>
+    </footer>
+  </div>
+
+  <script src="notifications.js"></script>
+</body>
+</html>
+

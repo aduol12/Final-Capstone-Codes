@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Environment Monitoring</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Load Chart.js from CDN with specific version -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <style>
+    /* Additional styles for nav buttons */
+    .main-nav {
+      margin: 1rem 0;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-button {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      background-color: var(--card-bg, #f5f5f5);
+      color: var(--text-color, #333);
+      border: 1px solid var(--border-color, #ddd);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .nav-button:hover {
+      background-color: var(--accent-color, #3498db);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-button.active {
+      background-color: var(--accent-color, #3498db);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Smart Environment Monitoring</h1>
+      <div class="header-actions">
+        <button id="test-reading-btn" class="action-button">Add Test Reading</button>
+        <button id="generate-data-btn" class="action-button">Generate Test Data</button>
+        <button id="theme-toggle" class="theme-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </header>
+    
+    <nav class="main-nav">
+      <div class="nav-buttons">
+        <a href="index.html" class="nav-button active">Dashboard</a>
+        <a href="control.html" class="nav-button">Control</a>
+        <a href="analytics.html" class="nav-button">Analytics</a>
+        <a href="notifications.html" class="nav-button">Notifications</a>
+        <a href="settings.html" class="nav-button">Settings</a>
+      </div>
+    </nav>
+    
+    <main>
+      <section class="sensor-grid">
+        <div class="sensor-card">
+          <div class="sensor-header">
+            <h3>Temperature</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+          </div>
+          <div class="sensor-value" id="temperature-value">25.0°C</div>
+          <div class="sensor-target">Target: <span id="temperature-target">25.0°C</span></div>
+          <div class="progress-bar">
+            <div class="progress-fill temperature-fill" style="width: 50%"></div>
+          </div>
+        </div>
+        
+        <div class="sensor-card">
+          <div class="sensor-header">
+            <h3>Humidity</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          </div>
+          <div class="sensor-value" id="humidity-value">60.0%</div>
+          <div class="sensor-target">Target: <span id="humidity-target">60.0%</span></div>
+          <div class="progress-bar">
+            <div class="progress-fill humidity-fill" style="width: 60%"></div>
+          </div>
+        </div>
+        
+        <div class="sensor-card">
+          <div class="sensor-header">
+            <h3>Fan Speed</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path><path d="M14 7c0 .667 -.333 1.333 -1 2"></path><path d="M19.207 7.793c-.426 .426 -1.039 .586 -1.836 .536"></path><path d="M12.5 3c.333 0 .667 .167 1 .5"></path><path d="M7.793 4.793c.426 .426 .586 1.039 .536 1.836"></path><path d="M10 12c0 -.667 .333 -1.333 1 -2"></path><path d="M4.793 16.207c.426 -.426 1.039 -.586 1.836 -.536"></path><path d="M11.5 21c-.333 0 -.667 -.167 -1 -.5"></path><path d="M16.207 19.207c-.426 -.426 -.586 -1.039 -.536 -1.836"></path><path d="M17 12c0 .667 -.333 1.333 -1 2"></path><path d="M19.207 16.207c-.426 -.426 -1.039 -.586 -1.836 -.536"></path><path d="M12.5 21c.333 0 .667 -.167 1 -.5"></path><path d="M4.793 7.793c.426 .426 .586 1.039 .536 1.836"></path></svg>
+          </div>
+          <div class="sensor-value" id="fan-value">Off</div>
+          <div class="sensor-target">Current setting</div>
+          <div class="progress-bar">
+            <div class="progress-fill fan-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <div class="sensor-card">
+          <div class="sensor-header">
+            <h3>Gas Level</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M16 7v7a4 4 0 0 1-8 0V7"></path><path d="M8 14h8"></path></svg>
+          </div>
+          <div class="sensor-value" id="gas-value">500</div>
+          <div class="sensor-target" id="gas-status">Normal</div>
+          <div class="progress-bar">
+            <div class="progress-fill gas-fill" style="width: 50%"></div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="status-banner">
+        <div class="status-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+        <div class="status-content">
+          <h3>System Status: <span id="system-status">Optimal</span></h3>
+          <p id="status-details">Temperature is within optimal range. Humidity is within optimal range. Recommended fan speed: Off without pump activation.</p>
+        </div>
+      </section>
+      
+      <section class="pump-status-card">
+        <h3>Pump Status</h3>
+        <div class="pump-status-content">
+          <div class="pump-status-badge" id="pump-badge">Inactive</div>
+          <p id="pump-details">Pump is currently inactive</p>
+        </div>
+      </section>
+      
+      <section class="chart-container">
+        <h3>Temperature History</h3>
+        <canvas id="temperature-chart"></canvas>
+      </section>
+      
+      <section class="chart-container">
+        <h3>Humidity History</h3>
+        <canvas id="humidity-chart"></canvas>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; Smart Storage Monitoring</p>
+    </footer>
+  </div>
+
+  <script src="api.js" defer></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
+
+

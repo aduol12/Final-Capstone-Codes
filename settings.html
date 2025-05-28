@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Smart Environment Monitoring</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Smart Environment Monitoring</h1>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </header>
+    
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="control.html">Control</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="notifications.html">Notifications</a></li>
+        <li class="active"><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    
+    <main>
+      <h2 class="page-title">Settings</h2>
+      
+      <div class="settings-container">
+        <div class="settings-sidebar">
+          <ul class="settings-nav">
+            <li class="active" data-target="general-settings">General</li>
+            <li data-target="notification-settings">Notifications</li>
+            <li data-target="system-settings">System</li>
+            <li data-target="sensor-settings">Sensors</li>
+            <li data-target="network-settings">Network</li>
+            <li data-target="account-settings">Account</li>
+          </ul>
+        </div>
+        
+        <div class="settings-content">
+          <section id="general-settings" class="settings-section active">
+            <h3>General Settings</h3>
+            
+            <div class="settings-group">
+              <h4>Display</h4>
+              
+              <div class="setting-item">
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select" class="setting-input">
+                  <option value="dark">Dark</option>
+                  <option value="light">Light</option>
+                  <option value="system">System Default</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label for="refresh-rate">Dashboard Refresh Rate:</label>
+                <select id="refresh-rate" class="setting-input">
+                  <option value="5">5 seconds</option>
+                  <option value="10" selected>10 seconds</option>
+                  <option value="30">30 seconds</option>
+                  <option value="60">1 minute</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label for="temperature-unit">Temperature Unit:</label>
+                <select id="temperature-unit" class="setting-input">
+                  <option value="celsius" selected>Celsius (°C)</option>
+                  <option value="fahrenheit">Fahrenheit (°F)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>Date & Time</h4>
+              
+              <div class="setting-item">
+                <label for="timezone">Timezone:</label>
+                <select id="timezone" class="setting-input">
+                  <option value="UTC">UTC</option>
+                  <option value="America/New_York">Eastern Time (ET)</option>
+                  <option value="America/Chicago">Central Time (CT)</option>
+                  <option value="America/Denver">Mountain Time (MT)</option>
+                  <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                  <option value="Europe/London">London (GMT)</option>
+                  <option value="Europe/Paris">Paris (CET)</option>
+                  <option value="Asia/Tokyo">Tokyo (JST)</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label for="date-format">Date Format:</label>
+                <select id="date-format" class="setting-input">
+                  <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                  <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                  <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label for="time-format">Time Format:</label>
+                <select id="time-format" class="setting-input">
+                  <option value="12h">12-hour (AM/PM)</option>
+                  <option value="24h">24-hour</option>
+                </select>
+              </div>
+            </div>
+          </section>
+          
+          <section id="notification-settings" class="settings-section">
+            <h3>Notification Settings</h3>
+            
+            <div class="settings-group">
+              <h4>Alert Thresholds</h4>
+              
+              <div class="setting-item">
+                <label for="temp-high-threshold">High Temperature Threshold (°C):</label>
+                <input type="number" id="temp-high-threshold" class="setting-input" value="30" min="20" max="40">
+              </div>
+              
+              <div class="setting-item">
+                <label for="temp-low-threshold">Low Temperature Threshold (°C):</label>
+                <input type="number" id="temp-low-threshold" class="setting-input" value="15" min="0" max="20">
+              </div>
+              
+              <div class="setting-item">
+                <label for="humidity-high-threshold">High Humidity Threshold (%):</label>
+                <input type="number" id="humidity-high-threshold" class="setting-input" value="70" min="50" max="90">
+              </div>
+              
+              <div class="setting-item">
+                <label for="humidity-low-threshold">Low Humidity Threshold (%):</label>
+                <input type="number" id="humidity-low-threshold" class="setting-input" value="30" min="10" max="40">
+              </div>
+              
+              <div class="setting-item">
+                <label for="gas-threshold">Gas Level Threshold (ppm):</label>
+                <input type="number" id="gas-threshold" class="setting-input" value="800" min="200" max="1000">
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>Notification Delivery</h4>
+              
+              <div class="setting-item checkbox">
+                <input type="checkbox" id="email-notifications" class="setting-checkbox" checked>
+                <label for="email-notifications">Email Notifications</label>
+              </div>
+              
+              <div class="setting-item">
+                <label for="email-address">Email Address:</label>
+                <input type="email" id="email-address" class="setting-input" value="user@example.com">
+              </div>
+              
+              <div class="setting-item checkbox">
+                <input type="checkbox" id="push-notifications" class="setting-checkbox" checked>
+                <label for="push-notifications">Push Notifications</label>
+              </div>
+              
+              <div class="setting-item checkbox">
+                <input type="checkbox" id="sms-notifications" class="setting-checkbox">
+                <label for="sms-notifications">SMS Notifications</label>
+              </div>
+              
+              <div class="setting-item">
+                <label for="phone-number">Phone Number:</label>
+                <input type="tel" id="phone-number" class="setting-input" placeholder="+1 (555) 123-4567">
+              </div>
+            </div>
+          </section>
+          
+          <section id="system-settings" class="settings-section">
+            <h3>System Settings</h3>
+            
+            <div class="settings-group">
+              <h4>System Maintenance</h4>
+              
+              <div class="setting-item">
+                <button id="check-updates" class="setting-button">Check for Updates</button>
+                <p class="setting-description">Current Version: v2.1.3</p>
+              </div>
+              
+              <div class="setting-item">
+                <button id="backup-system" class="setting-button">Backup System Configuration</button>
+                <p class="setting-description">Last Backup: 2023-04-10 09:15:22</p>
+              </div>
+              
+              <div class="setting-item">
+                <button id="restore-system" class="setting-button">Restore from Backup</button>
+              </div>
+              
+              <div class="setting-item">
+                <button id="factory-reset" class="setting-button danger">Factory Reset</button>
+                <p class="setting-description warning">Warning: This will reset all settings to factory defaults.</p>
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>Data Management</h4>
+              
+              <div class="setting-item">
+                <label for="data-retention">Data Retention Period:</label>
+                <select id="data-retention" class="setting-input">
+                  <option value="30">30 days</option>
+                  <option value="60">60 days</option>
+                  <option value="90" selected>90 days</option>
+                  <option value="180">180 days</option>
+                  <option value="365">1 year</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <button id="export-all-data" class="setting-button">Export All Data</button>
+              </div>
+              
+              <div class="setting-item">
+                <button id="clear-all-data" class="setting-button danger">Clear All Data</button>
+                <p class="setting-description warning">Warning: This will permanently delete all collected data.</p>
+              </div>
+            </div>
+          </section>
+          
+          <section id="sensor-settings" class="settings-section">
+            <h3>Sensor Settings</h3>
+            
+            <div class="settings-group">
+              <h4>Sensor Calibration</h4>
+              
+              <div class="setting-item">
+                <label for="temp-calibration">Temperature Calibration Offset:</label>
+                <div class="setting-with-unit">
+                  <input type="number" id="temp-calibration" class="setting-input" value="0.0" step="0.1" min="-5" max="5">
+                  <span class="setting-unit">°C</span>
+                </div>
+              </div>
+              
+              <div class="setting-item">
+                <label for="humidity-calibration">Humidity Calibration Offset:</label>
+                <div class="setting-with-unit">
+                  <input type="number" id="humidity-calibration" class="setting-input" value="0.0" step="0.1" min="-10" max="10">
+                  <span class="setting-unit">%</span>
+                </div>
+              </div>
+              
+              <div class="setting-item">
+                <label for="gas-calibration">Gas Sensor Calibration Offset:</label>
+                <div class="setting-with-unit">
+                  <input type="number" id="gas-calibration" class="setting-input" value="0" step="1" min="-50" max="50">
+                  <span class="setting-unit">ppm</span>
+                </div>
+              </div>
+              
+              <div class="setting-item">
+                <button id="calibrate-sensors" class="setting-button">Run Calibration</button>
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>Sensor Polling</h4>
+              
+              <div class="setting-item">
+                <label for="sensor-polling-rate">Sensor Polling Rate:</label>
+                <select id="sensor-polling-rate" class="setting-input">
+                  <option value="5">Every 5 seconds</option>
+                  <option value="10" selected>Every 10 seconds</option>
+                  <option value="30">Every 30 seconds</option>
+                  <option value="60">Every minute</option>
+                </select>
+              </div>
+              
+              <div class="setting-item checkbox">
+                <input type="checkbox" id="enable-averaging" class="setting-checkbox" checked>
+                <label for="enable-averaging">Enable Reading Averaging</label>
+              </div>
+              
+              <div class="setting-item">
+                <label for="averaging-samples">Number of Samples for Averaging:</label>
+                <input type="number" id="averaging-samples" class="setting-input" value="5" min="3" max="20">
+              </div>
+            </div>
+          </section>
+          
+          <section id="network-settings" class="settings-section">
+            <h3>Network Settings</h3>
+            
+            <div class="settings-group">
+              <h4>MQTT Configuration</h4>
+              
+              <div class="setting-item">
+                <label for="mqtt-broker">MQTT Broker:</label>
+                <input type="text" id="mqtt-broker" class="setting-input" value="mqtt://broker.example.com">
+              </div>
+              
+              <div class="setting-item">
+                <label for="mqtt-port">MQTT Port:</label>
+                <input type="number" id="mqtt-port" class="setting-input" value="1883" min="1" max="65535">
+              </div>
+              
+              <div class="setting-item">
+                <label for="mqtt-username">MQTT Username:</label>
+                <input type="text" id="mqtt-username" class="setting-input" value="mqtt_user">
+              </div>
+              
+              <div class="setting-item">
+                <label for="mqtt-password">MQTT Password:</label>
+                <input type="password" id="mqtt-password" class="setting-input" value="********">
+              </div>
+              
+              <div class="setting-item">
+                <button id="test-mqtt" class="setting-button">Test Connection</button>
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>API Configuration</h4>
+              
+              <div class="setting-item">
+                <label for="api-url">API URL:</label>
+                <input type="text" id="api-url" class="setting-input" value="http://localhost:5000/api">
+              </div>
+              
+              <div class="setting-item checkbox">
+                <input type="checkbox" id="enable-api-auth" class="setting-checkbox" checked>
+                <label for="enable-api-auth">Enable API Authentication</label>
+              </div>
+              
+              <div class="setting-item">
+                <label for="api-key">API Key:</label>
+                <div class="setting-with-action">
+                  <input type="password" id="api-key" class="setting-input" value="********">
+                  <button id="generate-api-key" class="setting-action-button">Generate New</button>
+                </div>
+              </div>
+              
+              <div class="setting-item">
+                <button id="test-api" class="setting-button">Test API Connection</button>
+              </div>
+            </div>
+          </section>
+          
+          <section id="account-settings" class="settings-section">
+            <h3>Account Settings</h3>
+            
+            <div class="settings-group">
+              <h4>User Profile</h4>
+              
+              <div class="setting-item">
+                <label for="username">Username:</label>
+                <input type="text" id="username" class="setting-input" value="admin">
+              </div>
+              
+              <div class="setting-item">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="setting-input" value="admin@example.com">
+              </div>
+              
+              <div class="setting-item">
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password" class="setting-input" placeholder="Enter current password">
+              </div>
+              
+              <div class="setting-item">
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" class="setting-input" placeholder="Enter new password">
+              </div>
+              
+              <div class="setting-item">
+                <label for="confirm-password">Confirm New Password:</label>
+                <input type="password" id="confirm-password" class="setting-input" placeholder="Confirm new password">
+              </div>
+              
+              <div class="setting-item">
+                <button id="update-profile" class="setting-button">Update Profile</button>
+              </div>
+            </div>
+            
+            <div class="settings-group">
+              <h4>Session Management</h4>
+              
+              <div class="setting-item">
+                <label for="session-timeout">Session Timeout:</label>
+                <select id="session-timeout" class="setting-input">
+                  <option value="15">15 minutes</option>
+                  <option value="30" selected>30 minutes</option>
+                  <option value="60">1 hour</option>
+                  <option value="120">2 hours</option>
+                  <option value="0">Never</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <button id="logout-all-devices" class="setting-button">Logout from All Devices</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      
+      <div class="settings-actions">
+        <button id="save-settings" class="primary-button">Save Changes</button>
+        <button id="cancel-settings" class="secondary-button">Cancel</button>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2023 Smart Environment Monitoring</p>
+    </footer>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
+

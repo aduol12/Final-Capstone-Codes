@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-blue: #3b82f6;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      text-align: center;
+      padding: 50px;
+      background-color: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 500px;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--accent-blue);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--text-secondary);
+    }
+    
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--accent-blue);
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    a:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <p>The page you are looking for does not exist.</p>
+    <a href="/">Return to Dashboard</a>
+  </div>
+</body>
+</html>
+

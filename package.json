@@ -1,22 +1,14 @@
 {
   "name": "smart-environment-monitoring",
   "version": "1.0.0",
-  "description": "A system for monitoring and controlling environmental conditions",
-  "main": "backend/server.js",
+  "description": "Smart Environment Monitoring Dashboard",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
-    "cors": "^2.8.5",
-    "default-connector": "link:../AppData/Local/pnpm/global/5/node_modules/dataconnect-generated/js/default-connector",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mqtt": "^4.3.7"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
+    "chart.js": "^4.4.9"
   }
 }

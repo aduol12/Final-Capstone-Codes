@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Panel - Smart Environment Monitoring</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- First load the MQTT library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+  <!-- Then load your MQTT client -->
+  <script src="mqttClient.js"></script>
+  <!-- Load your original control.js -->
+  <script src="control.js"></script>
+  
+</head>
+<body>
+<!-- Rest of your HTML remains unchanged -->
+<div class="app-container">
+  <header>
+    <h1>Smart Environment Monitoring</h1>
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+    </div>
+  </header>
+  
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Dashboard</a></li>
+      <li class="active"><a href="control.html">Control</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <h2 class="page-title">Control Panel</h2>
+    
+    <section class="control-grid">
+      <div class="control-card">
+        <div class="control-header">
+          <h3>Fan Control</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path><path d="M14 7c0 .667 -.333 1.333 -1 2"></path><path d="M19.207 7.793c-.426 .426 -1.039 .586 -1.836 .536"></path><path d="M12.5 3c.333 0 .667 .167 1 .5"></path><path d="M7.793 4.793c.426 .426 .586 1.039 .536 1.836"></path><path d="M10 12c0 -.667 .333 -1.333 1 -2"></path><path d="M4.793 16.207c.426 -.426 1.039 -.586 1.836 -.536"></path><path d="M11.5 21c-.333 0 -.667 -.167 -1 -.5"></path><path d="M16.207 19.207c-.426 -.426 -.586 -1.039 -.536 -1.836"></path><path d="M17 12c0 .667 -.333 1.333 -1 2"></path><path d="M19.207 16.207c-.426 -.426 -1.039 -.586 -1.836 -.536"></path><path d="M12.5 21c.333 0 .667 -.167 1 -.5"></path><path d="M4.793 7.793c.426 .426 .586 1.039 .536 1.836"></path></svg>
+        </div>
+        
+        <div class="control-content">
+          <div class="control-status">
+            <span class="status-label">Current Status:</span>
+            <span id="fan-status" class="status-value">Off</span>
+          </div>
+          
+          <div class="control-actions">
+            <button id="fan-toggle" class="control-button">Turn On</button>
+          </div>
+          
+          <div class="control-slider">
+            <label for="fan-speed">Fan Speed:</label>
+            <input type="range" id="fan-speed" min="0" max="100" value="0" disabled>
+            <div class="slider-value"><span id="fan-speed-value">0</span>%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="control-card">
+        <div class="control-header">
+          <h3>Cooler Control</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h1"></path><path d="M6 12h1"></path><path d="M17 12h1"></path><path d="M21 12h1"></path><path d="M12 2v1"></path><path d="M12 6v1"></path><path d="M12 17v1"></path><path d="M12 21v1"></path><path d="M4.93 4.93l.7 .7"></path><path d="M18.36 18.36l.7 .7"></path><path d="M6.34 17.66l-.7 .7"></path><path d="M19.07 4.93l-.7 .7"></path><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M3 3l18 18"></path></svg>
+        </div>
+        
+        <div class="control-content">
+          <div class="control-status">
+            <span class="status-label">Current Status:</span>
+            <span id="cooler-status" class="status-value">Off</span>
+          </div>
+          
+          <div class="control-actions">
+            <button id="cooler-toggle" class="control-button">Turn On</button>
+          </div>
+          
+          <div class="control-slider">
+            <label for="cooler-power">Cooler Power:</label>
+            <input type="range" id="cooler-power" min="0" max="100" value="0" disabled>
+            <div class="slider-value"><span id="cooler-power-value">0</span>%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="control-card">
+        <div class="control-header">
+          <h3>Pump Control</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l2 2"></path><path d="M17 12a5 5 0 1 0 -10 0"></path><path d="M19 16v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        
+        <div class="control-content">
+          <div class="control-status">
+            <span class="status-label">Current Status:</span>
+            <span id="pump-status" class="status-value">Inactive</span>
+          </div>
+          
+          <div class="control-actions">
+            <button id="pump-toggle" class="control-button">Activate</button>
+          </div>
+          
+          <div class="control-info">
+            <p>Last activated: <span id="pump-last-active">Never</span></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="control-card">
+        <div class="control-header">
+          <h3>Auto Mode</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"></path><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M5 12l-3 0"></path><path d="M22 12l-3 0"></path><path d="M12 5l0 -3"></path><path d="M12 22l0 -3"></path></svg>
+        </div>
+        
+        <div class="control-content">
+          <div class="control-status">
+            <span class="status-label">Current Status:</span>
+            <span id="auto-status" class="status-value">Enabled</span>
+          </div>
+          
+          <div class="control-actions">
+            <button id="auto-toggle" class="control-button active">Disable</button>
+          </div>
+          
+          <div class="control-info">
+            <p>Auto mode automatically adjusts all systems based on sensor readings and optimal conditions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="fuzzy-control-section">
+      <h3>Fuzzy Logic Control Settings</h3>
+      
+      <div class="fuzzy-control-card">
+        <div class="fuzzy-control-item">
+          <h4>Temperature Range (°C)</h4>
+          <div class="range-slider">
+            <input type="range" id="temp-min" min="10" max="30" value="18" class="range-min">
+            <input type="range" id="temp-max" min="20" max="40" value="30" class="range-max">
+            <div class="range-track"></div>
+            <div class="range-values">
+              <span id="temp-min-value">18</span>°C - <span id="temp-max-value">30</span>°C
+            </div>
+          </div>
+        </div>
+        
+        <div class="fuzzy-control-item">
+          <h4>Humidity Range (%)</h4>
+          <div class="range-slider">
+            <input type="range" id="humidity-min" min="20" max="60" value="40" class="range-min">
+            <input type="range" id="humidity-max" min="50" max="90" value="70" class="range-max">
+            <div class="range-track"></div>
+            <div class="range-values">
+              <span id="humidity-min-value">40</span>% - <span id="humidity-max-value">70</span>%
+            </div>
+          </div>
+        </div>
+        
+        <div class="fuzzy-control-item">
+          <h4>Gas Level Thresholds (ppm)</h4>
+          <div class="range-slider">
+            <input type="range" id="gas-min" min="100" max="500" value="200" class="range-min">
+            <input type="range" id="gas-max" min="600" max="1000" value="800" class="range-max">
+            <div class="range-track"></div>
+            <div class="range-values">
+              <span id="gas-min-value">200</span> - <span id="gas-max-value">800</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="fuzzy-control-actions">
+          <button id="save-fuzzy-settings" class="primary-button">Save Settings</button>
+          <button id="reset-fuzzy-settings" class="secondary-button">Reset to Defaults</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2023 Smart Environment Monitoring</p>
+  </footer>
+</div>
+
+<script src="api.js" defer></script>
+<script src="control.js" defer></script>
+</body>
+</html>
+
